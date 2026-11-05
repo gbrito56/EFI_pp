@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Ignorar otras bases pero permitir la base de datos precargada
+*.db
+*.sqlite
+*.sqlite3
+!base_de_datos.db
