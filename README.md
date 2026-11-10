@@ -10,15 +10,29 @@ Sistema web Fullstack para la administración de inventario, catálogo de útile
 
 ---
 
+## Enlaces del Proyecto en Producción
+
+- **Frontend (Web):** [https://efi-pp.vercel.app](https://efi-pp.vercel.app)
+- **Backend (API):** [https://efi-d7aa302f.fastapicloud.dev](https://efi-d7aa302f.fastapicloud.dev)
+- **Documentación de la API (Swagger):** [https://efi-d7aa302f.fastapicloud.dev/docs](https://efi-d7aa302f.fastapicloud.dev/docs)
+- **Documentación alternativa (ReDoc):** [https://efi-d7aa302f.fastapicloud.dev/redoc](https://efi-d7aa302f.fastapicloud.dev/redoc)
+
+### Credenciales de prueba para el panel de administración (`/admin`)
+- **Usuario:** `admin`
+- **Contraseña:** `admin`
+
+---
+
 ## Stack Tecnológico
 
 | Capa | Tecnología | Despliegue |
 |---|---|---|
-| **Backend** | FastAPI + SQLModel + Alembic + FastAPI Pagination | [FastAPI Cloud](https://fastapi.cloud) |
-| **Frontend** | React 18 + Vite + react-router-dom + TailwindCSS | [Vercel](https://vercel.com) |
+| **Backend** | FastAPI + SQLModel + Alembic + FastAPI Pagination | [FastAPI Cloud](https://efi-d7aa302f.fastapicloud.dev) |
+| **Frontend** | React 18 + Vite + react-router-dom + TailwindCSS | [Vercel](https://efi-pp.vercel.app) |
 | **Base de Datos** | SQLite (desarrollo y producción) | FastAPI Cloud |
 | **Gestor de Paquetes** | `uv` / `pip` (Python) y `npm` (Node.js) | — |
 
+---
 
 ## Instalación y Ejecución Local
 
@@ -70,29 +84,27 @@ La API cuenta con CRUD completo y paginación (`Page[T]`) con `fastapi-paginatio
 ### Artículos (`/articulos`)
 | Método | Endpoint | Descripción | Paginado |
 |---|---|---|---|
-| `GET` | `/articulos/` | Obtener todos los artículos |
-| `GET` | `/articulos/{id}` | Obtener detalle de artículo con categoría y proveedor anidados |
-| `GET` | `/articulos/por-categoria/{categoria_id}` | Filtrar artículos por categoría |
-| `POST` | `/articulos/` | Crear un nuevo artículo |
-| `PUT` | `/articulos/{id}` | Actualizar un artículo existente |
-| `DELETE` | `/articulos/{id}` | Eliminar artículo (físico o borrado lógico con `?logico=true`) |
+| `GET` | `/articulos/` | Obtener todos los artículos | Sí |
+| `GET` | `/articulos/{id}` | Obtener detalle de artículo con categoría y proveedor anidados | No |
+| `GET` | `/articulos/por-categoria/{categoria_id}` | Filtrar artículos por categoría | Sí |
+| `POST` | `/articulos/` | Crear un nuevo artículo | No |
+| `PUT` | `/articulos/{id}` | Actualizar un artículo existente | No |
+| `DELETE` | `/articulos/{id}` | Eliminar artículo (físico o borrado lógico con `?logico=true`) | No |
 
 ### Categorías (`/categoria`)
 | Método | Endpoint | Descripción | Paginado |
 |---|---|---|---|
-| `GET` | `/categoria/` | Obtener todas las categorías |
-| `GET` | `/categoria/{id}` | Detalle de categoría con lista de artículos asociados |
-| `POST` | `/categoria/` | Crear una nueva categoría | 
-| `PUT` | `/categoria/{id}` | Actualizar una categoría | 
-| `DELETE` | `/categoria/{id}` | Eliminar categoría | 
+| `GET` | `/categoria/` | Obtener todas las categorías | Sí |
+| `GET` | `/categoria/{id}` | Detalle de categoría con lista de artículos asociados | No |
+| `POST` | `/categoria/` | Crear una nueva categoría | No |
+| `PUT` | `/categoria/{id}` | Actualizar una categoría | No |
+| `DELETE` | `/categoria/{id}` | Eliminar categoría | No |
 
 ### Proveedores (`/proveedor`)
 | Método | Endpoint | Descripción | Paginado |
 |---|---|---|---|
-| `GET` | `/proveedor/` | Obtener todos los proveedores | 
-| `GET` | `/proveedor/{id}` | Detalle de proveedor con lista de artículos asociados | 
-| `POST` | `/proveedor/` | Crear un nuevo proveedor | 
-| `PUT` | `/proveedor/{id}` | Actualizar un proveedor | 
-| `DELETE` | `/proveedor/{id}` | Eliminar proveedor | 
-
-
+| `GET` | `/proveedor/` | Obtener todos los proveedores | Sí |
+| `GET` | `/proveedor/{id}` | Detalle de proveedor con lista de artículos asociados | No |
+| `POST` | `/proveedor/` | Crear un nuevo proveedor | No |
+| `PUT` | `/proveedor/{id}` | Actualizar un proveedor | No |
+| `DELETE` | `/proveedor/{id}` | Eliminar proveedor | No |
