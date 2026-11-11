@@ -31,6 +31,8 @@ app/db/migrations/versions/*.pyc
 
 # Node / Frontend
 node_modules/
+.vite/
+frontend/.vite/
 frontend/dist/
 frontend/.env
 !frontend/.env.example
