@@ -16,6 +16,19 @@ Sistema web Fullstack para la administración de inventario, catálogo interacti
 
 ---
 
+## 🚀 Enlaces del Proyecto en Producción
+
+- **Frontend (Aplicación Web en Vercel):** [https://efi-pp.vercel.app](https://efi-pp.vercel.app)
+- **Backend (API en FastAPI Cloud):** [https://efi-d7aa302f.fastapicloud.dev](https://efi-d7aa302f.fastapicloud.dev)
+- **Documentación Interactiva (Swagger UI):** [https://efi-d7aa302f.fastapicloud.dev/docs](https://efi-d7aa302f.fastapicloud.dev/docs)
+- **Documentación Alternativa (ReDoc):** [https://efi-d7aa302f.fastapicloud.dev/redoc](https://efi-d7aa302f.fastapicloud.dev/redoc)
+
+### Credenciales de Demostración (Panel `/admin`)
+- **Usuario:** `admin`
+- **Contraseña:** `admin`
+
+---
+
 ## 📖 Temática Elegida y API Utilizada
 
 ### Temática
@@ -24,9 +37,9 @@ El proyecto modela la operación de **Librería Kuky**, un comercio dedicado a l
 ### API Utilizada
 La API REST fue desarrollada desde cero con **FastAPI** y **SQLModel**, conectada a una base de datos **SQLite** relacional con claves foráneas e integridad referencial:
 - **Paginación nativa:** Todos los listados implementan `fastapi-pagination` (`Page[T]`).
-- **Migraciones de esquema:** Versionadas mediante **Alembic** (`001_initial_schema` y `002_add_imagen_url`), ejecutadas automáticamente al iniciar la app.
+- **Migraciones de esquema:** Versionadas mediante **Alembic** (`001_initial_schema` y `002_add_imagen_url`), ejecutadas automáticamente al iniciar la aplicación.
 - **Documentación OpenAPI interactiva:** Disponible en `/docs` (Swagger UI) y `/redoc`.
-- **CORS dinámico:** Configurado para admitir conexiones locales y el dominio de despliegue en la nube mediante variables de entorno.
+- **CORS dinámico:** Configurado para admitir conexiones locales y el dominio de despliegue en Vercel.
 
 ---
 
@@ -60,8 +73,8 @@ Para dar cumplimiento a los estándares de desarrollo ágil y trabajo colaborati
 
 | Capa | Tecnología | Características | Despliegue |
 |---|---|---|---|
-| **Backend** | Python 3.12 + FastAPI + SQLModel | Arquitectura en 4 capas (`Base`/`Table`/`Public`/`Nested`), Alembic, `fastapi-pagination` | [FastAPI Cloud](https://fastapi.cloud) |
-| **Frontend** | React 18 + Vite + TailwindCSS | Componentes modulares, react-router-dom, Context API (Favoritos, Tema, Auth) | [Vercel](https://vercel.com) |
+| **Backend** | Python 3.12 + FastAPI + SQLModel | Arquitectura en 4 capas (`Base`/`Table`/`Public`/`Nested`), Alembic, `fastapi-pagination` | [FastAPI Cloud](https://efi-d7aa302f.fastapicloud.dev) |
+| **Frontend** | React 18 + Vite + TailwindCSS | Componentes modulares, react-router-dom, Context API (Favoritos, Tema, Auth) | [Vercel](https://efi-pp.vercel.app) |
 | **Base de Datos** | SQLite (`base_de_datos.db`) | 3 tablas relacionadas con FKs, precargada con 16 artículos e imágenes reales | FastAPI Cloud |
 | **Control de Versiones** | Git + GitFlow | Commits semánticos (`feat:`, `fix:`, `chore:`, `release:`), PRs y Tags | GitHub |
 
@@ -79,7 +92,7 @@ cd EFI_pp
 ```bash
 cd backend
 
-# Crear entorno virtual con Python 3.12 o uv
+# Crear entorno virtual con uv o Python 3.12
 uv venv --python 3.12
 
 # Activar entorno virtual
@@ -89,7 +102,8 @@ uv venv --python 3.12
 source .venv/bin/activate
 
 # Instalar dependencias
-pip install -r requirements.txt
+uv pip install -r requirements.txt
+# O alternativamente con pip: pip install -r requirements.txt
 
 # Iniciar servidor de desarrollo
 fastapi dev src/main.py --port 8000
@@ -109,7 +123,6 @@ npm install
 npm run dev
 ```
 - Aplicación web: `http://localhost:5173`
-*(Credenciales de demostración para el panel de administración `/admin`: usuario `admin` / contraseña `admin`)*.
 
 ---
 
@@ -120,35 +133,36 @@ La API cuenta con CRUD completo y paginación (`Page[T]`) en sus recursos princi
 ### Artículos (`/articulos`)
 | Método | Endpoint | Descripción | Paginado |
 |---|---|---|:---:|
-| `GET` | `/articulos/` | Obtener catálogo completo de artículos | ✅ |
-| `GET` | `/articulos/{id}` | Obtener detalle con categoría y proveedor anidados | — |
-| `GET` | `/articulos/por-categoria/{categoria_id}` | Filtrar artículos pertenecientes a una categoría | ✅ |
-| `POST` | `/articulos/` | Registrar un nuevo artículo escolar | — |
-| `PUT` | `/articulos/{id}` | Actualizar un artículo existente | — |
-| `DELETE` | `/articulos/{id}` | Eliminar artículo (físico o borrado lógico con `?logico=true`) | — |
+| `GET` | `/articulos/` | Obtener catálogo completo de artículos | ✅ Sí |
+| `GET` | `/articulos/{id}` | Obtener detalle con categoría y proveedor anidados | No |
+| `GET` | `/articulos/por-categoria/{categoria_id}` | Filtrar artículos pertenecientes a una categoría | ✅ Sí |
+| `POST` | `/articulos/` | Registrar un nuevo artículo escolar | No |
+| `PUT` | `/articulos/{id}` | Actualizar un artículo existente | No |
+| `DELETE` | `/articulos/{id}` | Eliminar artículo (físico o borrado lógico con `?logico=true`) | No |
 
 ### Categorías (`/categoria`)
 | Método | Endpoint | Descripción | Paginado |
 |---|---|---|:---:|
-| `GET` | `/categoria/` | Obtener listado de categorías | ✅ |
-| `GET` | `/categoria/{id}` | Detalle de categoría con artículos asociados | — |
-| `POST` | `/categoria/` | Crear una nueva categoría | — |
-| `PUT` | `/categoria/{id}` | Modificar datos de una categoría | — |
-| `DELETE` | `/categoria/{id}` | Eliminar una categoría | — |
+| `GET` | `/categoria/` | Obtener listado de categorías | ✅ Sí |
+| `GET` | `/categoria/{id}` | Detalle de categoría con artículos asociados | No |
+| `POST` | `/categoria/` | Crear una nueva categoría | No |
+| `PUT` | `/categoria/{id}` | Modificar datos de una categoría | No |
+| `DELETE` | `/categoria/{id}` | Eliminar una categoría | No |
 
 ### Proveedores (`/proveedor`)
 | Método | Endpoint | Descripción | Paginado |
 |---|---|---|:---:|
-| `GET` | `/proveedor/` | Obtener listado de proveedores / marcas | ✅ |
-| `GET` | `/proveedor/{id}` | Detalle de proveedor con artículos asociados | — |
-| `POST` | `/proveedor/` | Registrar un nuevo proveedor | — |
-| `PUT` | `/proveedor/{id}` | Modificar datos de un proveedor | — |
-| `DELETE` | `/proveedor/{id}` | Eliminar un proveedor | — |
+| `GET` | `/proveedor/` | Obtener listado de proveedores / marcas | ✅ Sí |
+| `GET` | `/proveedor/{id}` | Detalle de proveedor con artículos asociados | No |
+| `POST` | `/proveedor/` | Registrar un nuevo proveedor | No |
+| `PUT` | `/proveedor/{id}` | Modificar datos de un proveedor | No |
+| `DELETE` | `/proveedor/{id}` | Eliminar un proveedor | No |
 
 ---
 
 ## 🎨 Características de la Interfaz (Frontend)
 
+- **Componentes Modulares:** Estructura limpia y desacoplada en `components/`, `pages/` y `context/`.
 - **Diseño con TailwindCSS:** Interfaz moderna, adaptativa para móviles y computadoras de escritorio.
 - **Soporte Dark Mode / Light Mode:** Alternancia de temas con persistencia en `localStorage` mediante `ThemeContext`.
 - **4 Estados de UI:** Manejo explícito de estados de carga (**Loading** con spinner), errores (**Error** con botón de reintento), catálogo vacío (**Empty**) y visualización (**Success**).
