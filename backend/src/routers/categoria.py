@@ -17,12 +17,12 @@ NOT_FOUND_RESPONSE = {
     }
 }
 
-# 1. Read All (Paginado)
+# 1. Todos (Paginado)
 @categoria_router.get("/", response_model=Page[CategoriaPublic])
 async def get_categorias(db: Session = Depends(get_db)):
     return paginate(db, select(Categoria))
 
-# 2. Read by ID (Nested con sus artículos)
+# 2. Por ID (Nested con sus artículos)
 @categoria_router.get("/{id}", responses=NOT_FOUND_RESPONSE, response_model=CategoriaNested)
 async def get_categoria_by_id(
     id: Annotated[int, Path(gt=0)],
@@ -33,7 +33,7 @@ async def get_categoria_by_id(
         return categoria
     raise HTTPException(status_code=404, detail="Categoría no encontrada")
 
-# 3. Create
+# 3. Crear
 @categoria_router.post("/", response_model=CategoriaPublic, status_code=201)
 async def crear_categoria(
     categoria_nueva: CategoriaBase,
@@ -45,7 +45,7 @@ async def crear_categoria(
     db.refresh(categoria_db)
     return categoria_db
 
-# 4. Update (PUT completo)
+# 4. Update
 @categoria_router.put("/{id}", responses=NOT_FOUND_RESPONSE, response_model=CategoriaPublic)
 async def editar_categoria(
     id: Annotated[int, Path(gt=0)],
