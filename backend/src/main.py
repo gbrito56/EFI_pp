@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.title = "Librería Kuky - API de Gestión Escolar"
+app.title = "Librería Kuky - API de Gestión"
 
 # Inclusión de routers modulares
 app.include_router(articulos_router, prefix="/articulos", tags=["Artículos"])
