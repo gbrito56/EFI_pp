@@ -1,7 +1,3 @@
-# Referencias temporales de cátedra
-_referencias_catedra/
-
-# Dependencias de Python
 __pycache__/
 *.py[cod]
 *.pyo
@@ -18,24 +14,19 @@ env/
 ENV/
 *.env
 !.env.example
-
-# Base de datos
 *.db
 *.sqlite
 *.sqlite3
 !backend/base_de_datos.db
-
 # Alembic
 alembic/versions/*.pyc
 app/db/migrations/versions/*.pyc
-
 # Node / Frontend
 node_modules/
 frontend/dist/
 frontend/.env
 !frontend/.env.example
 .npm/
-
 # IDEs
 .vscode/
 .idea/
@@ -43,20 +34,10 @@ frontend/.env
 *.swo
 .DS_Store
 Thumbs.db
-
 # FastAPI Cloud
 .fastapi-cloud/
-
 # Logs
 *.log
 logs/
-
-# Testing
-.coverage
-htmlcov/
-.pytest_cache/
-.agents/
-GEMINI.md
-docs/
 *.rar
 *.zip
