@@ -51,18 +51,16 @@ app.include_router(proveedor_router, prefix="/proveedor", tags=["Proveedores"])
 add_pagination(app)
 
 # Configuración de CORS
-frontend_url = os.getenv("FRONTEND_URL", "")
 allowed_origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
+    "https://efi-pp.vercel.app",
 ]
-if frontend_url:
-    allowed_origins.append(frontend_url)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins if frontend_url else ["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
