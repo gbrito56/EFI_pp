@@ -45,7 +45,7 @@ export default function Home() {
               : "bg-white border-zinc-200 shadow-sm"
           }`}
         >
-          <h3 className="text-xl font-bold">Catálogo Completo</h3>
+          <h3 className="text-xl text-center font-bold">Catálogo Completo</h3>
           <p className={`text-sm leading-relaxed ${darkMode ? "text-zinc-400" : "text-zinc-600"}`}>
             Escritura, papelería, arte y organización. Todo lo que necesitas en nuestro negocio.
           </p>
@@ -58,7 +58,7 @@ export default function Home() {
               : "bg-white border-zinc-200 shadow-sm"
           }`}
         >
-          <h3 className="text-xl font-bold">Lista de Favoritos</h3>
+          <h3 className="text-xl text-center font-bold">Lista de Favoritos</h3>
           <p className={`text-sm leading-relaxed ${darkMode ? "text-zinc-400" : "text-zinc-600"}`}>
             Guardá tu lista escolar para revisar en cualquier momento lo que necesites.
           </p>
@@ -71,7 +71,7 @@ export default function Home() {
               : "bg-white border-zinc-200 shadow-sm"
           }`}
         >
-          <h3 className="text-xl font-bold">Atención y Consultas</h3>
+          <h3 className="text-xl text-center font-bold">Atención y Consultas</h3>
           <p className={`text-sm leading-relaxed ${darkMode ? "text-zinc-400" : "text-zinc-600"}`}>
             ¿Tenés dudas sobre stock o presupuestos escolares? Escribinos a{" "}
             <a
