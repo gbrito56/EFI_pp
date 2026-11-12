@@ -55,8 +55,6 @@ logs/
 .coverage
 htmlcov/
 .pytest_cache/
-
-# Metadatos locales
 .agents/
 GEMINI.md
 docs/
