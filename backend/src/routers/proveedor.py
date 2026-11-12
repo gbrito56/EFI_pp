@@ -17,12 +17,12 @@ NOT_FOUND_RESPONSE = {
     }
 }
 
-# 1. Read All (Paginado)
+# 1. Todos (Paginado)
 @proveedor_router.get("/", response_model=Page[ProveedorPublic])
 async def get_proveedores(db: Session = Depends(get_db)):
     return paginate(db, select(Proveedor))
 
-# 2. Read by ID (Nested con sus artículos)
+# 2. Por ID (Nested con sus artículos)
 @proveedor_router.get("/{id}", responses=NOT_FOUND_RESPONSE, response_model=ProveedorNested)
 async def get_proveedor_by_id(
     id: Annotated[int, Path(gt=0)],
@@ -33,7 +33,7 @@ async def get_proveedor_by_id(
         return proveedor
     raise HTTPException(status_code=404, detail="Proveedor no encontrado")
 
-# 3. Create
+# 3. Crear
 @proveedor_router.post("/", response_model=ProveedorPublic, status_code=201)
 async def crear_proveedor(
     proveedor_nuevo: ProveedorBase,
@@ -45,7 +45,7 @@ async def crear_proveedor(
     db.refresh(proveedor_db)
     return proveedor_db
 
-# 4. Update (PUT completo)
+# 4. Update
 @proveedor_router.put("/{id}", responses=NOT_FOUND_RESPONSE, response_model=ProveedorPublic)
 async def editar_proveedor(
     id: Annotated[int, Path(gt=0)],
