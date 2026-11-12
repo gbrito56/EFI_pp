@@ -17,12 +17,12 @@ NOT_FOUND_RESPONSE = {
     }
 }
 
-# 1. Read All (Paginado)
+# 1. Todos (Paginado)
 @articulos_router.get("/", response_model=Page[ArticuloPublic])
 async def get_articulos(db: Session = Depends(get_db)):
     return paginate(db, select(Articulo))
 
-# 2. Filtrar por categoría (Paginado)
+# 2. Por categoría (Paginado)
 @articulos_router.get("/por-categoria/{categoria_id}", response_model=Page[ArticuloPublic])
 async def get_articulos_por_categoria(
     categoria_id: Annotated[int, Path(gt=0)],
@@ -31,7 +31,7 @@ async def get_articulos_por_categoria(
     query = select(Articulo).where(Articulo.categoria_id == categoria_id)
     return paginate(db, query)
 
-# 3. Read by ID (Nested con categoría y proveedor)
+# 3. Por ID (Nested con categoría y proveedor)
 @articulos_router.get("/{id}", responses=NOT_FOUND_RESPONSE, response_model=ArticuloNested)
 async def get_articulo_by_id(
     id: Annotated[int, Path(gt=0)],
@@ -42,7 +42,7 @@ async def get_articulo_by_id(
         return articulo
     raise HTTPException(status_code=404, detail="Artículo no encontrado")
 
-# 4. Create
+# 4. Crear
 @articulos_router.post("/", response_model=ArticuloNested, status_code=201)
 async def crear_articulo(
     articulo_nuevo: ArticuloBase,
@@ -54,7 +54,7 @@ async def crear_articulo(
     db.refresh(articulo_db)
     return articulo_db
 
-# 5. Update (PUT completo)
+# 5. Update
 @articulos_router.put("/{id}", responses=NOT_FOUND_RESPONSE, response_model=ArticuloPublic)
 async def editar_articulo(
     id: Annotated[int, Path(gt=0)],
