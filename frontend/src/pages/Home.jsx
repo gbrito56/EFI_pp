@@ -13,7 +13,7 @@ export default function Home() {
           Librería <span className="text-teal-500">Kuky</span>
         </h1>
         <p className={`text-lg sm:text-xl leading-relaxed ${darkMode ? "text-zinc-300" : "text-zinc-700"}`}>
-          Sistema integral de gestión de catálogo, inventario de útiles escolares, marcas oficiales y control de stock en tiempo real.
+          Sistema de gestión de catálogo, inventario de útiles escolares, marcas oficiales y control de stock en tiempo real.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 pt-4">
@@ -21,7 +21,7 @@ export default function Home() {
             to="/utiles"
             className="px-6 py-3 bg-teal-600 hover:bg-teal-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-950/30 hover:scale-105"
           >
-            Explorar Catálogo 🎒
+            Explorar Catálogo
           </Link>
           <Link
             to="/admin"
@@ -31,7 +31,7 @@ export default function Home() {
                 : "bg-white hover:bg-zinc-100 text-zinc-800 border-zinc-300 shadow-sm"
             }`}
           >
-            Panel de Gestión ⚙️
+            Panel de Gestión
           </Link>
         </div>
       </section>
