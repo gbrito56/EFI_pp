@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import sys
 from logging.config import fileConfig
 
@@ -6,8 +6,10 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
-# Asegurar que src esté en el PYTHONPATH
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
+ROOT_DIR = Path(__file__).resolve().parent.parent
+SRC_DIR = ROOT_DIR / ¨src¨
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 from models.articulos import Articulo
 from models.categoria import Categoria
