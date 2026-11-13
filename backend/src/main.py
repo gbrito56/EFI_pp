@@ -1,6 +1,12 @@
 import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
+
+# Garantizar que src esté en sys.path para imports internos (routers, models, database)
+SRC_DIR = Path(__file__).resolve().parent
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
 from alembic import command
 from alembic.config import Config
 from database import engine
@@ -12,14 +18,8 @@ from routers.articulos import articulos_router
 from routers.categoria import categoria_router
 from routers.proveedor import proveedor_router
 
-
-# Garantizar que src esté en sys.path para imports internos (routers, models, database)
-SRC_DIR = Path(__file__).resolve().parent
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
-
-
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 def run_migrations():
